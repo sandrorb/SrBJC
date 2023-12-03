@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SrB J.C.</string>
+    <string name="edtTextViewTitle_name">SrB Juros Compostos</string>
+    <string name="edtTextViewCapitalInicial_name">Capital Inicial</string>
+    <string name="edtTextViewAporteMensal_name">Aporte Mensal</string>
+    <string name="edtTextViewTempo_name">Tempo (anos)</string>
+    <string name="btn_name">Calcular</string>
 </resources>
