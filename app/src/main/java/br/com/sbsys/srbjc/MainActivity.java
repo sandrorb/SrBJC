@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Forma que encontrei para mudar a cor de fundo, já que quando eu mudo
-        //por meio do design, o App crashes. Parece que esse problema tem a ver
-        //com o ContraintLayout
+        //por meio do design, o App crashes.
+        //Parece que esse problema tem a ver com o ConstraintLayout
         //findViewById(R.id.container).setBackgroundColor(Color.WHITE);
 
         preenchimentoInicialDosCampos();
@@ -48,22 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void calcular(View view){
 
-//        EditText edTxNumCapInicial = findViewById(R.id.editTextNumberCapitalInicial);
-//        EditText edTxNumAporte = findViewById(R.id.editTextNumberAporte);
-//        EditText edTxNumJuros = findViewById(R.id.editTextNumberJuros);
-//        EditText edTxNumTempo = findViewById(R.id.editTextNumberTempo);
-
-        /**
-         * Obtem os valores dos campos em formato numérico para os cálculos
-         */
         Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString());
         Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString());
         Double juros = Double.parseDouble(edTxNumJuros.getText().toString());
         Double tempo = Double.parseDouble(edTxNumTempo.getText().toString());
 
-        /**
-         * Realização dos cálculo da Capital Final
-         */
         Double fator = Math.pow( 1 + juros / 100.0, tempo * 12.0);
         Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros/100.0);
 
