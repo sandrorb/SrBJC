@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,16 +21,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText edTxNumResultado;
 
     private void preenchimentoInicialDosCampos(){
-        edTxNumCapInicial = findViewById(R.id.editTextNumberCapitalInicial);
+        edTxNumCapInicial = findViewById(R.id.capitalInicial);
         edTxNumCapInicial.setText("10000");
 
-        edTxNumAporte = findViewById(R.id.editTextNumberAporte);
+        edTxNumAporte = findViewById(R.id.aporteMensal);
         edTxNumAporte.setText("300");
 
-        edTxNumJuros = findViewById(R.id.editTextNumberJuros);
+        edTxNumJuros = findViewById(R.id.jurosMensal);
         edTxNumJuros.setText("2.5");
 
-        edTxNumTempo = findViewById(R.id.editTextNumberTempo);
+        edTxNumTempo = findViewById(R.id.tempo);
         edTxNumTempo.setText("12");
     }
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Double fator = Math.pow( 1 + juros / 100.0, tempo * 12.0);
         Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros/100.0);
 
-        edTxNumResultado = findViewById(R.id.editTextNumberResultado);
+        edTxNumResultado = findViewById(R.id.editTextTextResultado);
 
         NumberFormat df = DecimalFormat.getInstance();
         df.setMinimumFractionDigits(2);
@@ -65,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
         String res = df.format(capFinal);
 
         edTxNumResultado.setText(res);
+
     }
 }
