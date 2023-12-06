@@ -10,8 +10,8 @@ android {
         applicationId = "br.com.sbsys.srbjc"
         minSdk = 24
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.1"
+        versionCode = 7
+        versionName = "0.07"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

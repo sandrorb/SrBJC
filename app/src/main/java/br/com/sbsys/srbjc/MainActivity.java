@@ -2,11 +2,14 @@ package br.com.sbsys.srbjc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -14,13 +17,27 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edTxNumCapInicial;
-    private EditText edTxNumAporte;
-    private EditText edTxNumJuros;
-    private EditText edTxNumTempo;
+    private TextInputEditText edTxNumCapInicial;
+    private TextInputEditText edTxNumAporte;
+    private TextInputEditText edTxNumJuros;
+    private TextInputEditText edTxNumTempo;
     private EditText edTxNumResultado;
+    private TextView edTxViewVersion;
+
 
     private void preenchimentoInicialDosCampos(){
+
+        edTxViewVersion = findViewById(R.id.textViewVersionName);
+        PackageManager manager = this.getPackageManager();
+        PackageInfo info = null;
+        try {
+            info = manager.getPackageInfo(this.getPackageName(), PackageManager.GET_ACTIVITIES);
+            edTxViewVersion.setText("Versão: " + info.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            edTxViewVersion.setText("");
+            throw new RuntimeException(e);
+        }
+
         edTxNumCapInicial = findViewById(R.id.textInputEditTextCapitalInicial);
         edTxNumCapInicial.setText("10000");
 
