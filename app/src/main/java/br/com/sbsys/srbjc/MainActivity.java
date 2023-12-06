@@ -21,16 +21,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText edTxNumResultado;
 
     private void preenchimentoInicialDosCampos(){
-        edTxNumCapInicial = findViewById(R.id.capitalInicial);
+        edTxNumCapInicial = findViewById(R.id.textInputEditTextCapitalInicial);
         edTxNumCapInicial.setText("10000");
 
-        edTxNumAporte = findViewById(R.id.aporteMensal);
+        edTxNumAporte = findViewById(R.id.textInputEditTextAporteMensal );
         edTxNumAporte.setText("300");
 
-        edTxNumJuros = findViewById(R.id.jurosMensal);
+        edTxNumJuros = findViewById(R.id.textInputEditTextJurosMensal);
         edTxNumJuros.setText("2.5");
 
-        edTxNumTempo = findViewById(R.id.tempo);
+        edTxNumTempo = findViewById(R.id.textInputEditTextTempo);
         edTxNumTempo.setText("12");
     }
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Double fator = Math.pow( 1 + juros / 100.0, tempo * 12.0);
         Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros/100.0);
 
-        edTxNumResultado = findViewById(R.id.editTextTextResultado);
+        edTxNumResultado = findViewById(R.id.editTextTextCapitalFinal);
 
         NumberFormat df = DecimalFormat.getInstance();
         df.setMinimumFractionDigits(2);
