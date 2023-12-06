@@ -28,6 +28,7 @@
         android:layout_marginLeft="50sp"
         android:layout_marginTop="30sp"
         android:layout_marginRight="50sp"
+        android:layout_marginBottom="20sp"
         android:padding="10sp"
         android:text="Calculadora Juros Compostos"
         android:textAlignment="center"
@@ -44,7 +45,7 @@
             android:layout_marginLeft="50sp"
             android:layout_marginTop="20sp"
             android:layout_marginRight="50sp"
-            android:layout_marginBottom="10sp"
+            android:layout_marginBottom="20sp"
             android:hint="Capital Inicial"
             android:padding="10sp"
             android:textAlignment="center" />
