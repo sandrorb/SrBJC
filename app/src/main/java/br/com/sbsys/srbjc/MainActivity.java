@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -114,34 +115,39 @@ public class MainActivity extends AppCompatActivity {
     private boolean isDataFieldsValid(){
         boolean isOk = true;
         String str = null;
+
         str = edTxNumCapInicial.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
         }
+
         str = edTxNumAporte.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
         }
+
         str = edTxNumJuros.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+        } else {
+            Double i = (Double) Double.parseDouble(str);
+            if (i == 0.0) { // juros não podem ser zero
+                i = 0.00001;
+                //Temporariamente 5 casas para poder ser pego corretamente a posteriori
+                df.setMaximumFractionDigits(5);
+                edTxNumJuros.setText(df.format(i));
+                df.setMaximumFractionDigits(2);
+            }
         }
+
         str = edTxNumTempo.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
         }
+
         str = edTxNumCapitalFinal.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
-        } else {
-            Double d = null;
-            try {
-                d = 12.0; //isto está dando errado: Double.parseDouble(str);
-                edTxNumTempo.setText(df.format(d+1.0));
-            } catch (NumberFormatException e) {
-                d = null;
-                edTxNumTempo.setText("Erro");
-            }
         }
 
         return isOk;

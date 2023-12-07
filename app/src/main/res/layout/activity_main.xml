@@ -80,7 +80,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:gravity="center"
-            android:hint="Juros Mensal"
+            android:hint="Juros Mensal (%)"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
     </com.google.android.material.textfield.TextInputLayout>
