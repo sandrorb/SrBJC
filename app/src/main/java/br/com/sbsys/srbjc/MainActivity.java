@@ -106,6 +106,13 @@ public class MainActivity extends AppCompatActivity {
 
             String res = df.format(capFinal);
             edTxNumCapitalFinal.setText(res);
+
+            //Este código abaixo funciona: pega o texto do capital final e usa,
+            //com os outros dados, para calcular o tempo.
+//            capFinal = Double.parseDouble(edTxNumCapitalFinal.getText().toString().replace(",",""));
+//            Double t = Calc.calculaTempo(capFinal, capInicial, aporteMensal, juros);
+//            edTxNumTempo.setText(df.format(t));
+
         }else{
             edTxNumCapitalFinal.setText("Há campo(s) inválido(s)");
         }

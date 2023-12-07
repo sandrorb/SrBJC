@@ -13,6 +13,8 @@ public class Calc {
         double t2 = 1.0;
         double factor = 0.0;
 
+        i = i / 100.0;
+
         while(v<M){
             t2 = t2 * 2.0;
             factor = Math.pow(1+i,t2*12);
