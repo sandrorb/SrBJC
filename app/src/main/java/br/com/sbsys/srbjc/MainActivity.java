@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+import java.util.Objects;
 
 import br.com.sbsys.srbjc.calc.Calc;
 
@@ -107,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
 //            Double t = Calc.calculaTempo(capFinal, capInicial, aporteMensal, juros);
 //            edTxNumTempo.setText(df.format(t));
 
-        }else{
-            edTxNumCapitalFinal.setText("Há campo(s) inválido(s)");
         }
     }
 
@@ -134,6 +133,15 @@ public class MainActivity extends AppCompatActivity {
         str = edTxNumCapitalFinal.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+        } else {
+            Double d = null;
+            try {
+                d = 12.0; //isto está dando errado: Double.parseDouble(str);
+                edTxNumTempo.setText(df.format(d+1.0));
+            } catch (NumberFormatException e) {
+                d = null;
+                edTxNumTempo.setText("Erro");
+            }
         }
 
         return isOk;
