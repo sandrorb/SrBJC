@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
+            android:gravity="center"
             android:hint="Capital Inicial"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
+            android:gravity="center"
             android:hint="Aporte Mensal"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
@@ -75,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
+            android:gravity="center"
             android:hint="Juros Mensal"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
@@ -94,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
+            android:gravity="center"
             android:hint="Tempo (anos)"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
@@ -113,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutTempo" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/idButtonCalcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -132,7 +136,7 @@
         android:text="Por Sandro Boschetti"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/idButtonCalcular" />
 
     <TextView
         android:id="@+id/textViewVersionName"
@@ -144,6 +148,6 @@
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintTop_toBottomOf="@id/idButtonCalcular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

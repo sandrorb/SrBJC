@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText edTxNumTempo;
     private EditText edTxNumResultado;
     private TextView edTxViewVersion;
+    private Button btn;
 
 
     private void preenchimentoInicialDosCampos(){
@@ -49,30 +52,27 @@ public class MainActivity extends AppCompatActivity {
 
         edTxNumTempo = findViewById(R.id.textInputEditTextTempo);
         edTxNumTempo.setText("12");
+
+        btn = findViewById(R.id.idButtonCalcular);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Forma que encontrei para mudar a cor de fundo, já que quando eu mudo
-        //por meio do design, o App crashes.
-        //Parece que esse problema tem a ver com o ConstraintLayout
-        //findViewById(R.id.container).setBackgroundColor(Color.WHITE);
-
+        //Põe dados iniciais nos campos para facilitar e servir como exemplo
         preenchimentoInicialDosCampos();
     }
 
     public void calcular(View view){
-
         Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString());
+        //Double capInicial = getDoubleValue(view, edTxNumCapInicial);
         Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString());
         Double juros = Double.parseDouble(edTxNumJuros.getText().toString());
         Double tempo = Double.parseDouble(edTxNumTempo.getText().toString());
 
-        Double fator = Math.pow( 1 + juros / 100.0, tempo * 12.0);
-        Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros/100.0);
+        Double fator = Math.pow(1 + juros / 100.0, tempo * 12.0);
+        Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros / 100.0);
 
         edTxNumResultado = findViewById(R.id.editTextTextCapitalFinal);
 
@@ -83,6 +83,20 @@ public class MainActivity extends AppCompatActivity {
         String res = df.format(capFinal);
 
         edTxNumResultado.setText(res);
+    }
 
+    //Tentativa inicial de impedir que sejam usados nos cãlculos
+    //string vazia o ponto que não pode se transformar em Double > 0
+    private Double getDoubleValue(View view, TextInputEditText tiet){
+        Double doubleVal = null;
+        String str = tiet.getText().toString();
+        if(str.equals("") || str.equals(".")) {
+            tiet.setBackgroundColor(Color.RED);
+            btn.setEnabled(false);
+        }else{
+            doubleVal = Double.parseDouble(str);
+            btn.setEnabled(true);
+        }
+        return doubleVal;
     }
 }
