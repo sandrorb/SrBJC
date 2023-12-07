@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText edTxNumTempo;
     private EditText edTxNumResultado;
     private TextView edTxViewVersion;
-    private Button btn;
-
 
     private void preenchimentoInicialDosCampos(){
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         edTxNumTempo = findViewById(R.id.textInputEditTextTempo);
         edTxNumTempo.setText("12");
 
-        btn = findViewById(R.id.idButtonCalcular);
+        edTxNumResultado = findViewById(R.id.editTextTextCapitalFinal);
     }
 
     @Override
@@ -65,38 +64,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view){
-        Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString());
-        //Double capInicial = getDoubleValue(view, edTxNumCapInicial);
-        Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString());
-        Double juros = Double.parseDouble(edTxNumJuros.getText().toString());
-        Double tempo = Double.parseDouble(edTxNumTempo.getText().toString());
+        if(isDataFieldsValid()) {
+            Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString());
+            Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString());
+            Double juros = Double.parseDouble(edTxNumJuros.getText().toString());
+            Double tempo = Double.parseDouble(edTxNumTempo.getText().toString());
 
-        Double fator = Math.pow(1 + juros / 100.0, tempo * 12.0);
-        Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros / 100.0);
+            Double fator = Math.pow(1 + juros / 100.0, tempo * 12.0);
+            Double capFinal = capInicial * fator + aporteMensal * (fator - 1.0) / (juros / 100.0);
 
-        edTxNumResultado = findViewById(R.id.editTextTextCapitalFinal);
+            NumberFormat df = DecimalFormat.getInstance();
+            df.setMinimumFractionDigits(2);
+            df.setMaximumFractionDigits(2);
+            df.setRoundingMode(RoundingMode.DOWN);
+            String res = df.format(capFinal);
 
-        NumberFormat df = DecimalFormat.getInstance();
-        df.setMinimumFractionDigits(2);
-        df.setMaximumFractionDigits(2);
-        df.setRoundingMode(RoundingMode.DOWN);
-        String res = df.format(capFinal);
-
-        edTxNumResultado.setText(res);
-    }
-
-    //Tentativa inicial de impedir que sejam usados nos cãlculos
-    //string vazia o ponto que não pode se transformar em Double > 0
-    private Double getDoubleValue(View view, TextInputEditText tiet){
-        Double doubleVal = null;
-        String str = tiet.getText().toString();
-        if(str.equals("") || str.equals(".")) {
-            tiet.setBackgroundColor(Color.RED);
-            btn.setEnabled(false);
+            edTxNumResultado.setText(res);
         }else{
-            doubleVal = Double.parseDouble(str);
-            btn.setEnabled(true);
+            edTxNumResultado.setText("Há campo(s) inválido(s)");
         }
-        return doubleVal;
     }
+
+    private boolean isDataFieldsValid(){
+        boolean isOk = true;
+        String str = null;
+        str = edTxNumCapInicial.getText().toString();
+        if(str.equals(".") || str.equals("")){
+            isOk = false;
+        }
+        str = edTxNumAporte.getText().toString();
+        if(str.equals(".") || str.equals("")){
+            isOk = false;
+        }
+        str = edTxNumJuros.getText().toString();
+        if(str.equals(".") || str.equals("")){
+            isOk = false;
+        }
+        str = edTxNumTempo.getText().toString();
+        if(str.equals(".") || str.equals("")){
+            isOk = false;
+        }
+
+        return isOk;
+    }
+
 }
