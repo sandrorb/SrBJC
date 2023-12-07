@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
         if(str.equals(".") || str.equals("")){
             isOk = false;
         }
+        str = edTxNumCapitalFinal.getText().toString();
+        if(str.equals(".") || str.equals("")){
+            isOk = false;
+        }
 
         return isOk;
     }
