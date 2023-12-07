@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         df.setMinimumFractionDigits(2);
         df.setMaximumFractionDigits(2);
         df.setRoundingMode(RoundingMode.DOWN);
+/*
+ *      //Exemplo de uso:
+ *      Double teste = (Double) df.parse(nStr);
+ *      String str = df.format(teste));
+ *      DecimalFormat df = new DecimalFormat("#,##0.00"); //"\u00A4#,##0.00" = R$ 0.000,00
+ */
 
-        //Exemplo de uso:
-        //Double teste = (Double) df.parse(nStr);
-        //String str = df.format(teste));
-        //DecimalFormat df = new DecimalFormat("#,##0.00"); //"\u00A4#,##0.00" = R$ 0.000,00
     }
 
     private void preenchimentoInicialDosCampos(){
@@ -55,45 +57,37 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
+        //Definição dos valores iniciais a serem usados nos preenchimentos dos campos
+        Double capInicial = Double.parseDouble("10000.00");
+        Double aporteMensal = Double.parseDouble("300.00");
+        Double juros = Double.parseDouble("2.50");
+        Double tempo = Double.parseDouble("12.0");
+        Double capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
+
         edTxNumCapInicial = findViewById(R.id.textInputEditTextCapitalInicial);
-        //edTxNumCapInicial.setText("10000");
-        edTxNumCapInicial.setText(df.format(Double.parseDouble("10000")));
+        edTxNumCapInicial.setText(df.format(capInicial));
 
         edTxNumAporte = findViewById(R.id.textInputEditTextAporteMensal );
-        //edTxNumAporte.setText("300");
-        edTxNumAporte.setText(df.format(Double.parseDouble("300")));
+        edTxNumAporte.setText(df.format(aporteMensal));
 
         edTxNumJuros = findViewById(R.id.textInputEditTextJurosMensal);
-        //edTxNumJuros.setText("2.5");
-        edTxNumJuros.setText(df.format(Double.parseDouble("2.5")));
+        edTxNumJuros.setText(df.format(juros));
 
         edTxNumTempo = findViewById(R.id.textInputEditTextTempo);
-        //edTxNumTempo.setText("12");
-        edTxNumTempo.setText(df.format(Double.parseDouble("12")));
+        edTxNumTempo.setText(df.format(tempo));
 
         edTxNumCapitalFinal = findViewById(R.id.textInputEditTextCapitalFinal);
+        edTxNumCapitalFinal.setText(df.format(capFinal));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //Põe dados iniciais nos campos para facilitar e servir como exemplo
         preenchimentoInicialDosCampos();
     }
-
-//    public void calcular(View view){
-//        Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString());
-//        Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString());
-//        Double juros = Double.parseDouble(edTxNumJuros.getText().toString());
-//        Double tempo = Double.parseDouble(edTxNumTempo.getText().toString());
-//        //edTxNumResultado.setText("1000000");
-//        //Double capFinal = 1000000.00;
-//        double t = Calc.calculaTempo(Double.parseDouble("1000000"), capInicial, aporteMensal, juros / 100.0);
-//        double capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
-//        edTxNumTempo.setText(String.valueOf(t));
-//        edTxNumResultado.setText(String.valueOf(capFinal));
-//    }
 
     public void calcular(View view){
         if(isDataFieldsValid()) {
