@@ -38,6 +38,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:hint="Capital Inicial"
+            android:inputType="numberDecimal"
             android:textAlignment="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +57,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:hint="Aporte Mensal"
+            android:inputType="numberDecimal"
             android:textAlignment="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,6 +76,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:hint="Juros Mensal"
+            android:inputType="numberDecimal"
             android:textAlignment="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,6 +95,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:hint="Tempo (anos)"
+            android:inputType="numberDecimal"
             android:textAlignment="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
