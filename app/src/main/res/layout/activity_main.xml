@@ -102,7 +102,9 @@
             android:gravity="center"
             android:hint="Tempo (anos)"
             android:inputType="numberDecimal"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_launcher_background"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
