@@ -29,7 +29,7 @@ public class Calc {
 
         double t = t1 +(t2 - t1) / 2.0;
 
-        while(Math.abs(v-M)>0.001){
+        while(Math.abs(v-M)>0.00001){
             factor = Math.pow(1+i,t*12);
             v = C * factor + A * (factor - 1.0) / i;
             if(v>M){

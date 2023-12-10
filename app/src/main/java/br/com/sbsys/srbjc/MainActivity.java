@@ -38,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutCapitalFinal;
     private TextInputEditText edTxNumCapitalFinal;
     private TextView edTxViewVersion;
+    private TextView textViewErros;
     private NumberFormat df;
-//    Double capInicial = 0.00;
-//    Double aporteMensal = 0.00;
-//    Double juros = 0.00;
-//    Double tempo = 0.00;
-//    Double capFinal = 0.00;
+    Double capInicial = 0.00;
+    Double aporteMensal = 0.00;
+    Double juros = 0.00;
+    Double tempo = 0.00;
+    Double capFinal = 0.00;
 
     public MainActivity(){
         df = DecimalFormat.getNumberInstance(Locale.ENGLISH);
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
         edTxNumCapitalFinal = findViewById(R.id.textInputEditTextCapitalFinal);
         edTxNumCapitalFinal.setText(df.format(capFinal));
+
+        textViewErros = findViewById(R.id.textViewErros);
     }
 
     @Override
@@ -112,15 +115,26 @@ public class MainActivity extends AppCompatActivity {
         textInputLayoutCapitalFinal.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString().replace(",",""));
-                Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString().replace(",",""));
-                Double juros = Double.parseDouble(edTxNumJuros.getText().toString().replace(",",""));
-                Double tempo = Double.parseDouble(edTxNumTempo.getText().toString().replace(",",""));
-                Double capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
-                String res = df.format(capFinal);
-                edTxNumCapitalFinal.setText(res);
+                if(isDataFieldsValid()) {
+                    capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
+                    String res = df.format(capFinal);
+                    edTxNumCapitalFinal.setText(res);
+                }
             }
         });
+
+        textInputLayoutTempo.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDataFieldsValid()) {
+                    tempo = Calc.calculaTempo(capFinal, capInicial, aporteMensal, juros);
+                    String res = df.format(tempo);
+                    edTxNumTempo.setText(res);
+                }
+            }
+        });
+
+
     }
 
     public void calcular(View view){
@@ -148,19 +162,28 @@ public class MainActivity extends AppCompatActivity {
         boolean isOk = true;
         String str = null;
 
+        textViewErros.setText("");
+
         str = edTxNumCapInicial.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+            textViewErros.append("Há erro em Capital Inicial\n");
+        }else{
+            capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString().replace(",",""));
         }
 
         str = edTxNumAporte.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+            textViewErros.append("Há erro em Aporte Mensal\n");
+        }else{
+            aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString().replace(",",""));
         }
 
         str = edTxNumJuros.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+            textViewErros.append("Há erro em Juros Mensal\n");
         } else {
             Double i = (Double) Double.parseDouble(str);
             if (i == 0.0) { // juros não podem ser zero
@@ -169,17 +192,27 @@ public class MainActivity extends AppCompatActivity {
                 df.setMaximumFractionDigits(5);
                 edTxNumJuros.setText(df.format(i));
                 df.setMaximumFractionDigits(2);
+                textViewErros.append("Juros não pode ser zero\n");
+                juros = Double.parseDouble(edTxNumJuros.getText().toString().replace(",",""));
+            }else{
+                juros = Double.parseDouble(edTxNumJuros.getText().toString().replace(",",""));
             }
         }
 
         str = edTxNumTempo.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+            textViewErros.append("Há erro em Tempo\n");
+        }else{
+            tempo = Double.parseDouble(edTxNumTempo.getText().toString().replace(",",""));
         }
 
         str = edTxNumCapitalFinal.getText().toString();
         if(str.equals(".") || str.equals("")){
             isOk = false;
+            textViewErros.append("Há erro em Capital Final\n");
+        }else{
+            capFinal = Double.parseDouble(edTxNumCapitalFinal.getText().toString().replace(",",""));
         }
 
         return isOk;

@@ -115,39 +115,26 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/idButtonCalcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:onClick="calcular"
-        android:text="Calcular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCapitalFinal" />
-
     <TextView
         android:id="@+id/textViewAutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:text="Por Sandro Boschetti"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idButtonCalcular" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewErros" />
 
     <TextView
         android:id="@+id/textViewVersionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
         android:text="Version Name"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idButtonCalcular" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewErros" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutCapitalFinal"
@@ -169,5 +156,18 @@
             android:hint="Capital Final"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewErros"
+        android:layout_width="341dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:text="Lista de Erros"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutCapitalFinal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
