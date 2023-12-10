@@ -29,7 +29,9 @@
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitulo">
+        app:layout_constraintTop_toBottomOf="@id/textViewTitulo"
+        app:endIconDrawable="@drawable/ic_calculate"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextCapitalInicial"
@@ -40,7 +42,7 @@
             android:gravity="center"
             android:hint="Capital Inicial"
             android:inputType="numberDecimal"
-            android:textAlignment="center" />
+            android:textAlignment="center"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,7 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutCapitalInicial"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        app:endIconDrawable="@drawable/ic_calculate"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextAporteMensal"
@@ -71,7 +75,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutAporteMensal"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        app:endIconDrawable="@drawable/ic_calculate"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextJurosMensal"
@@ -83,6 +89,7 @@
             android:hint="Juros Mensal (%)"
             android:inputType="numberDecimal"
             android:textAlignment="center" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +98,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutJurosMensal"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        app:endIconDrawable="@drawable/ic_calculate"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextTempo"
@@ -102,9 +111,7 @@
             android:gravity="center"
             android:hint="Tempo (anos)"
             android:inputType="numberDecimal"
-            android:textAlignment="center"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/baseline_add_24"/>
+            android:textAlignment="center"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +155,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutTempo"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        app:endIconDrawable="@drawable/ic_calculate"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextCapitalFinal"
