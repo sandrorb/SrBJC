@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -26,13 +27,23 @@ import br.com.sbsys.srbjc.calc.Calc;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextInputLayout textInputLayoutCapitalInicial;
     private TextInputEditText edTxNumCapInicial;
+    private TextInputLayout textInputLayoutAporte;
     private TextInputEditText edTxNumAporte;
+    private TextInputLayout textInputLayoutJuros;
     private TextInputEditText edTxNumJuros;
+    private TextInputLayout textInputLayoutTempo;
     private TextInputEditText edTxNumTempo;
+    private TextInputLayout textInputLayoutCapitalFinal;
     private TextInputEditText edTxNumCapitalFinal;
     private TextView edTxViewVersion;
     private NumberFormat df;
+//    Double capInicial = 0.00;
+//    Double aporteMensal = 0.00;
+//    Double juros = 0.00;
+//    Double tempo = 0.00;
+//    Double capFinal = 0.00;
 
     public MainActivity(){
         df = DecimalFormat.getNumberInstance(Locale.ENGLISH);
@@ -60,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
             edTxViewVersion.setText("");
             throw new RuntimeException(e);
         }
+
+        textInputLayoutCapitalInicial = findViewById(R.id.textInputLayoutCapitalInicial);
+        textInputLayoutAporte = findViewById(R.id.textInputLayoutAporteMensal);
+        textInputLayoutJuros = findViewById(R.id.textInputLayoutJurosMensal);
+        textInputLayoutTempo = findViewById(R.id.textInputLayoutTempo);
+        textInputLayoutCapitalFinal = findViewById(R.id.textInputLayoutCapitalFinal);
 
         //Definição dos valores iniciais a serem usados nos preenchimentos dos campos
         Double capInicial = Double.parseDouble("10000.00");
@@ -91,6 +108,19 @@ public class MainActivity extends AppCompatActivity {
 
         //Põe dados iniciais nos campos para facilitar e servir como exemplo
         preenchimentoInicialDosCampos();
+
+        textInputLayoutCapitalFinal.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString().replace(",",""));
+                Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString().replace(",",""));
+                Double juros = Double.parseDouble(edTxNumJuros.getText().toString().replace(",",""));
+                Double tempo = Double.parseDouble(edTxNumTempo.getText().toString().replace(",",""));
+                Double capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
+                String res = df.format(capFinal);
+                edTxNumCapitalFinal.setText(res);
+            }
+        });
     }
 
     public void calcular(View view){
