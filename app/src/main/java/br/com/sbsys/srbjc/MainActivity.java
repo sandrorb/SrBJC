@@ -134,28 +134,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        textInputLayoutJuros.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDataFieldsValid()) {
+                    juros = Calc.calculaJuros(capFinal, capInicial, aporteMensal, tempo);
+                    String res = df.format(juros * 100.0);
+                    edTxNumJuros.setText(res);
+                }
+            }
+        });
 
-    }
+        textInputLayoutAporte.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDataFieldsValid()) {
+                    aporteMensal = Calc.calculaAporte(capFinal, capInicial, tempo, juros);
+                    String res = df.format(aporteMensal);
+                    edTxNumAporte.setText(res);
+                }
+            }
+        });
 
-    public void calcular(View view){
-        if(isDataFieldsValid()) {
-            Double capInicial = Double.parseDouble(edTxNumCapInicial.getText().toString().replace(",",""));
-            Double aporteMensal = Double.parseDouble(edTxNumAporte.getText().toString().replace(",",""));
-            Double juros = Double.parseDouble(edTxNumJuros.getText().toString().replace(",",""));
-            Double tempo = Double.parseDouble(edTxNumTempo.getText().toString().replace(",",""));
+        textInputLayoutCapitalInicial.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isDataFieldsValid()) {
+                    capInicial = Calc.calculaCapitalInicial(capFinal, aporteMensal, tempo, juros);
+                    String res = df.format(capInicial);
+                    edTxNumCapInicial.setText(res);
+                }
+            }
+        });
 
-            Double capFinal = Calc.calculaCapitalFinal(capInicial, aporteMensal, tempo, juros);
-
-            String res = df.format(capFinal);
-            edTxNumCapitalFinal.setText(res);
-
-            //Este código abaixo funciona: pega o texto do capital final e usa,
-            //com os outros dados, para calcular o tempo.
-//            capFinal = Double.parseDouble(edTxNumCapitalFinal.getText().toString().replace(",",""));
-//            Double t = Calc.calculaTempo(capFinal, capInicial, aporteMensal, juros);
-//            edTxNumTempo.setText(df.format(t));
-
-        }
     }
 
     private boolean isDataFieldsValid(){
